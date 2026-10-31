@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Source_Serif_4 } from "next/font/google";
+import { Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-sans-app",
   subsets: ["latin"],
 });
 
-const serif = Source_Serif_4({
-  variable: "--font-serif",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
 });
 
 const title = "Sitasi — Generator Daftar Pustaka Gratis (APA, IEEE, Harvard)";
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={`${geistSans.variable} ${serif.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html lang="id" className={`${outfit.variable} ${fraunces.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-[#f3f1ec] text-[#1c1917]">{children}</body>
     </html>
   );
 }

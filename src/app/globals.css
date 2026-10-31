@@ -1,11 +1,23 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans-app);
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
 body {
-  background: #fafaf9;
-  color: #18181b;
+  background-color: #f3f1ec;
+  background-image:
+    linear-gradient(to right, rgba(28, 25, 23, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 25, 23, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: #1c1917;
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 380;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: #1c1917;
+  color: #f7f4ee;
 }

@@ -14,14 +14,14 @@ const TYPES: { id: RefType; label: string }[] = [
 ];
 
 const inputClass =
-  "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm outline-none transition focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/20";
+  "w-full border border-[#241c14] bg-[#fffdf8] px-3 py-2 text-sm outline-none transition focus:bg-white";
 
 function Field({ label, hint, className, children }: { label: string; hint?: string; className?: string; children: ReactNode }) {
   return (
     <label className={`flex flex-col gap-1 ${className ?? ""}`}>
-      <span className="text-xs font-medium text-zinc-600">{label}</span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#5c4d3c]">{label}</span>
       {children}
-      {hint && <span className="text-xs text-zinc-400">{hint}</span>}
+      {hint && <span className="text-xs text-[#8a7560]">{hint}</span>}
     </label>
   );
 }
@@ -63,16 +63,16 @@ export function RefEditor({ initial, style, lang, isEdit, duplicate, onSave, onC
   const containerLabel = d.type === "journal" ? "Nama jurnal" : d.type === "web" ? "Nama situs" : "Repositori (opsional)";
 
   return (
-    <section className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm sm:p-6">
+    <section className="border border-[#e7e2d9] bg-white p-5 shadow-[0_12px_40px_rgba(28,25,23,0.06)] sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-base font-semibold">{isEdit ? "Edit referensi" : "Periksa & lengkapi data"}</h2>
-        <div className="flex flex-wrap gap-1 rounded-lg bg-zinc-100 p-1">
+        <h2 className="font-serif text-2xl leading-none font-light tracking-[-0.03em]">{isEdit ? "Edit referensi" : "Periksa & lengkapi data"}</h2>
+        <div className="flex flex-wrap border border-[#241c14]">
           {TYPES.map((t) => (
             <button
               key={t.id}
               type="button"
               onClick={() => setType(t.id)}
-              className={`rounded-md px-3 py-1 text-xs font-medium transition ${d.type === t.id ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-800"}`}
+              className={`px-3 py-1.5 text-xs font-medium transition ${d.type === t.id ? "bg-[#241c14] text-[#fff8ee]" : "text-[#5c4d3c] hover:bg-[#f3e6d0]"}`}
             >
               {t.label}
             </button>
@@ -81,7 +81,7 @@ export function RefEditor({ initial, style, lang, isEdit, duplicate, onSave, onC
       </div>
 
       {duplicate && (
-        <p className="mt-4 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+        <p className="mt-4 border border-[#c4a574] bg-[#f8efd4] px-3 py-2 text-sm text-[#6b4e16]">
           Referensi ini sepertinya sudah ada di daftar pustaka Anda.
         </p>
       )}
@@ -107,10 +107,10 @@ export function RefEditor({ initial, style, lang, isEdit, duplicate, onSave, onC
         <Field label="Judul" className="sm:col-span-6">
           <div className="flex gap-2">
             <input className={inputClass} value={d.title} onChange={(e) => set("title", e.target.value)} placeholder="Judul artikel, buku, atau halaman" />
-            <button type="button" title="Huruf kapital hanya di awal kalimat (dianjurkan APA)" onClick={() => set("title", toSentenceCase(d.title))} className="shrink-0 rounded-lg border border-zinc-300 px-2 text-xs text-zinc-600 hover:bg-zinc-50">
+            <button type="button" title="Huruf kapital hanya di awal kalimat (dianjurkan APA)" onClick={() => set("title", toSentenceCase(d.title))} className="shrink-0 border border-[#241c14] px-2 text-xs text-[#241c14] hover:bg-[#f3e6d0]">
               Aa.
             </button>
-            <button type="button" title="Setiap Kata Diawali Huruf Kapital" onClick={() => set("title", toTitleCase(d.title))} className="shrink-0 rounded-lg border border-zinc-300 px-2 text-xs text-zinc-600 hover:bg-zinc-50">
+            <button type="button" title="Setiap Kata Diawali Huruf Kapital" onClick={() => set("title", toTitleCase(d.title))} className="shrink-0 border border-[#241c14] px-2 text-xs text-[#241c14] hover:bg-[#f3e6d0]">
               Aa Aa
             </button>
           </div>
@@ -200,26 +200,26 @@ export function RefEditor({ initial, style, lang, isEdit, duplicate, onSave, onC
         )}
       </div>
 
-      <div className="mt-6 rounded-xl bg-zinc-50 p-4">
-        <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">Pratinjau</p>
-        <p className="mt-2 pl-8 -indent-8 text-[15px] leading-relaxed text-zinc-900 [font-family:var(--font-serif)]">
+      <div className="mt-6 border border-dashed border-[#9b2c2c] bg-[#fffdf8] p-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9b2c2c]">Pratinjau</p>
+        <p className="mt-2 pl-8 -indent-8 text-[15.5px] leading-[1.7] font-light text-[#241c14] font-serif">
           {style === "ieee" && "[1] "}
           <CitationText parts={formatReference(preview, style, lang)} />
         </p>
-        <p className="mt-2 text-sm text-zinc-500">
-          Kutipan dalam teks: <span className="font-medium text-zinc-800">{inTextCitation(preview, style, lang, 1)}</span>
+        <p className="mt-2 text-sm text-[#5c4d3c]">
+          Kutipan dalam teks: <span className="font-medium text-[#241c14]">{inTextCitation(preview, style, lang, 1)}</span>
         </p>
       </div>
 
       <div className="mt-5 flex justify-end gap-2">
-        <button type="button" onClick={onCancel} className="rounded-lg px-4 py-2 text-sm font-medium text-zinc-600 hover:bg-zinc-100">
+        <button type="button" onClick={onCancel} className="px-4 py-2 text-sm font-medium text-[#5c4d3c] hover:bg-[#f3e6d0]">
           Batal
         </button>
         <button
           type="button"
           disabled={!canSave}
           onClick={() => onSave({ ...d, title: d.title.trim() })}
-          className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-40"
+          className="border border-[#241c14] bg-[#241c14] px-4 py-2 text-sm font-medium text-[#fff8ee] transition hover:bg-[#9b2c2c] disabled:cursor-not-allowed disabled:opacity-40"
         >
           {isEdit ? "Simpan perubahan" : "Tambahkan ke daftar pustaka"}
         </button>

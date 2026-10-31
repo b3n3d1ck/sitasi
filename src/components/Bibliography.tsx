@@ -66,20 +66,20 @@ export function Bibliography({ items, style, lang, onEdit }: Props) {
   }
 
   return (
-    <section className="rounded-2xl border border-zinc-200 bg-white shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 p-5 sm:px-6">
+    <section className="border border-[#e7e2d9] bg-white shadow-[0_12px_40px_rgba(28,25,23,0.06)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e4d3b4] p-5 sm:px-6">
         <div>
-          <h2 className="text-base font-semibold">Daftar pustaka</h2>
-          <p className="text-sm text-zinc-500">{items.length} referensi · tersimpan di browser ini</p>
+          <h2 className="font-serif text-2xl leading-none font-light tracking-[-0.03em]">Daftar pustaka</h2>
+          <p className="mt-1 text-sm text-[#5c4d3c]">{items.length} referensi · tersimpan di browser ini</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex rounded-lg bg-zinc-100 p-1">
+          <div className="flex border border-[#241c14]">
             {STYLES.map((s) => (
               <button
                 key={s.id}
                 type="button"
                 onClick={() => updateLibrary((st) => ({ ...st, style: s.id }))}
-                className={`rounded-md px-3 py-1 text-xs font-medium transition ${style === s.id ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-800"}`}
+                className={`px-3 py-1.5 text-xs font-medium transition ${style === s.id ? "bg-[#241c14] text-[#fff8ee]" : "text-[#5c4d3c] hover:bg-[#f3e6d0]"}`}
               >
                 {s.label}
               </button>
@@ -89,7 +89,7 @@ export function Bibliography({ items, style, lang, onEdit }: Props) {
             aria-label="Bahasa keterangan"
             value={lang}
             onChange={(e) => updateLibrary((st) => ({ ...st, lang: e.target.value as Lang }))}
-            className="rounded-lg border border-zinc-300 bg-white px-2 py-1.5 text-xs"
+            className="border border-[#241c14] bg-[#fffdf8] px-2 py-1.5 text-xs"
           >
             <option value="id">Bahasa Indonesia (dkk., t.t.)</option>
             <option value="en">English (et al., n.d.)</option>
@@ -98,24 +98,24 @@ export function Bibliography({ items, style, lang, onEdit }: Props) {
       </div>
 
       {sorted.length === 0 ? (
-        <p className="p-10 text-center text-sm text-zinc-500">
-          Belum ada referensi. Tempel DOI, ISBN, atau link di atas untuk mulai.
+        <p className="p-10 text-center font-serif text-lg font-light italic text-[#5c4d3c]">
+          Lembar ini masih kosong. Tempel DOI, ISBN, atau link di atas.
         </p>
       ) : (
         <>
-          <ol className="divide-y divide-zinc-100">
+          <ol className="divide-y divide-[#e4d3b4]">
             {sorted.map((r, i) => (
               <li key={r.id} className="group flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-start sm:gap-4 sm:px-6">
                 <div className="min-w-0 flex-1">
-                  <p className="break-words pl-8 -indent-8 text-[15px] leading-relaxed [font-family:var(--font-serif)]">
+                  <p className="break-words pl-8 -indent-8 text-[15.5px] leading-[1.7] font-serif font-light">
                     {style === "ieee" && `[${i + 1}] `}
                     <CitationText parts={formatReference(r, style, lang)} />
                   </p>
-                  <p className="mt-1 text-xs text-zinc-500">
-                    Dalam teks: <span className="font-medium text-zinc-700">{inTextCitation(r, style, lang, i + 1)}</span>
+                  <p className="mt-1 text-xs text-[#5c4d3c]">
+                    Dalam teks: <span className="font-medium text-[#241c14]">{inTextCitation(r, style, lang, i + 1)}</span>
                   </p>
                 </div>
-                <div className="flex shrink-0 gap-1 text-xs sm:opacity-60 sm:transition sm:group-hover:opacity-100">
+                <div className="flex shrink-0 gap-1 text-xs sm:opacity-70 sm:transition sm:group-hover:opacity-100">
                   <button
                     type="button"
                     onClick={async () => {
@@ -123,31 +123,31 @@ export function Bibliography({ items, style, lang, onEdit }: Props) {
                       await copyRich(e.html, e.text);
                       flash(r.id);
                     }}
-                    className="rounded-md px-2 py-1 font-medium text-emerald-700 hover:bg-emerald-50"
+                    className="px-2 py-1 font-medium text-[#9b2c2c] underline decoration-[#c4a574] underline-offset-4"
                   >
                     {copied === r.id ? "Tersalin ✓" : "Salin"}
                   </button>
-                  <button type="button" onClick={() => onEdit(r)} className="rounded-md px-2 py-1 font-medium text-zinc-600 hover:bg-zinc-100">
+                  <button type="button" onClick={() => onEdit(r)} className="px-2 py-1 font-medium text-[#241c14] hover:bg-[#f3e6d0]">
                     Edit
                   </button>
-                  <button type="button" onClick={() => remove(r.id)} className="rounded-md px-2 py-1 font-medium text-red-600 hover:bg-red-50">
+                  <button type="button" onClick={() => remove(r.id)} className="px-2 py-1 font-medium text-[#9b2c2c] hover:bg-[#fde8e4]">
                     Hapus
                   </button>
                 </div>
               </li>
             ))}
           </ol>
-          <div className="flex flex-wrap items-center gap-2 border-t border-zinc-200 p-5 sm:px-6">
-            <button type="button" onClick={copyAll} className="rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-800">
+          <div className="flex flex-wrap items-center gap-2 border-t border-[#e4d3b4] p-5 sm:px-6">
+            <button type="button" onClick={copyAll} className="border border-[#241c14] bg-[#241c14] px-4 py-2 text-sm font-medium text-[#fff8ee] hover:bg-[#9b2c2c]">
               {copied === "all" ? "Tersalin ✓" : "Salin semua (siap tempel ke Word)"}
             </button>
-            <button type="button" onClick={() => download("daftar-pustaka.bib", toBibtex(sorted))} className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50">
+            <button type="button" onClick={() => download("daftar-pustaka.bib", toBibtex(sorted))} className="border border-[#241c14] px-4 py-2 text-sm font-medium text-[#241c14] hover:bg-[#f3e6d0]">
               Unduh BibTeX
             </button>
-            <button type="button" onClick={() => download("daftar-pustaka.txt", sorted.map((r, i) => entry(r, i).text).join("\n\n"))} className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50">
+            <button type="button" onClick={() => download("daftar-pustaka.txt", sorted.map((r, i) => entry(r, i).text).join("\n\n"))} className="border border-[#241c14] px-4 py-2 text-sm font-medium text-[#241c14] hover:bg-[#f3e6d0]">
               Unduh .txt
             </button>
-            <button type="button" onClick={clearAll} className="ml-auto rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50">
+            <button type="button" onClick={clearAll} className="ml-auto px-3 py-2 text-sm font-medium text-[#9b2c2c] hover:bg-[#fde8e4]">
               Hapus semua
             </button>
           </div>
