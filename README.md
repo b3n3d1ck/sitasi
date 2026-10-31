@@ -7,6 +7,8 @@
 **Tempel DOI, ISBN, atau link jurnal → dapatkan sitasi APA 7, IEEE, atau Harvard dalam hitungan detik.**
 Siap tempel ke Word, lengkap dengan huruf miring dan hanging indent.
 
+### 👉 [Coba sekarang: sitasi-one.vercel.app](https://sitasi-one.vercel.app) 👈
+
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
