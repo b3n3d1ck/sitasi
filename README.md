@@ -83,4 +83,4 @@ Kalau pedoman kampusmu beda, buka [issue](https://github.com/b3n3d1ck/sitasi/iss
 
 Sitasi is a small open-source citation generator for Indonesian students. Paste a DOI, ISBN, or article URL (including OJS journals) and get APA 7, IEEE, or Harvard references you can paste into Word. No account, no ads. The bibliography stays in your browser.
 
-Dibuat oleh [Abraham Benedick](https://github.com/b3n3d1ck). Lisensi [MIT](LICENSE).
+Dibuat oleh [b3n3d1ck](https://github.com/b3n3d1ck). Lisensi [MIT](LICENSE).
